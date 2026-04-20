@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="CompStruct", layout="wide")
 
-st.title("💼 Compensation Structure Simulator")
+st.title("Compensation Structure Simulator")
 st.markdown("Design salary structures & analyze compliance + cost impact")
 
 # Sidebar Input
@@ -25,26 +25,26 @@ gratuity = (15/26) * wages * 10
 # Dashboard
 col1, col2, col3 = st.columns(3)
 
-col1.metric("💰 Total Salary", f"₹{total:,.0f}")
-col2.metric("⚖️ Wage %", f"{wage_percent:.1f}%")
-col3.metric("🏦 PF (Monthly)", f"₹{pf:,.0f}")
+col1.metric("Total Salary", f"₹{total:,.0f}")
+col2.metric("Wage %", f"{wage_percent:.1f}%")
+col3.metric("PF (Monthly)", f"₹{pf:,.0f}")
 
 # Compliance
-st.subheader("⚖️ Compliance Check")
+st.subheader("Compliance Check")
 
 if wage_percent >= 50:
-    st.success("✔ Compliant (≥50%)")
+    st.success("Compliant (≥50%)")
 else:
-    st.error("❌ Not Compliant (<50%)")
+    st.error("Not Compliant (<50%)")
 
 # Financial Impact
-st.subheader("💸 Financial Impact")
+st.subheader("Financial Impact")
 
 st.write(f"Gratuity (10 yrs): ₹{gratuity:,.0f}")
 st.write(f"Annual PF: ₹{pf*12:,.0f}")
 
 # What-if
-st.subheader("🔄 Scenario Simulator")
+st.subheader("Scenario Simulator")
 
 new_basic = st.slider("Adjust Basic Salary", 0, int(total), basic)
 
