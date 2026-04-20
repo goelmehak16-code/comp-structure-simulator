@@ -1,0 +1,30 @@
+st.header("📄 Document Compliance Checker")
+
+uploaded = st.file_uploader("Upload Wage Slip (TXT or simple PDF)", type=["txt", "pdf"])
+
+if uploaded:
+    try:
+        text = uploaded.read().decode("utf-8", errors="ignore").lower()
+
+        st.subheader("Checking Document...")
+
+        checks = {
+            "Employee Name": "employee" in text,
+            "Wage Period": "period" in text,
+            "Basic Salary": "basic" in text,
+            "Deductions": "deduction" in text,
+            "Net Pay": "net" in text
+        }
+
+        score = sum(checks.values())
+
+        for item, result in checks.items():
+            if result:
+                st.success(f"{item} present")
+            else:
+                st.error(f"{item} missing")
+
+        st.metric("Compliance Score", f"{(score/5)*100:.0f}%")
+
+    except:
+        st.error("Unable to read file. Try TXT format.")
